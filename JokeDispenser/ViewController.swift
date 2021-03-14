@@ -31,6 +31,28 @@ class ViewController: UITableViewController {
         }
     }
     
+//    @objc func filter() {
+//        let ac = UIAlertController(title: "Filter", message: "Enter a word to filter jokes", preferredStyle: .alert)
+//        ac.addTextField()
+//
+//        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
+//            let answer = ac.textFields?[0].text
+//            
+//            for petition in self.petitions {
+//                if let answer = answer {
+//                    if petition.body.contains(answer) || petition.title.contains(answer) {
+//                        self.filteredPetitions.append(petition)
+//                        self.petitions = self.filteredPetitions
+//                    }
+//                }
+//            }
+//            self.tableView.reloadData()
+//        }
+//
+//        ac.addAction(submitAction)
+//        present(ac, animated: true)
+//    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jokes.count
     }
@@ -45,11 +67,12 @@ class ViewController: UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = DetailViewController()
-//        vc.detailItem = petitions[indexPath.row]
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        
+        vc.joke = jokes[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
 }
 
