@@ -70,10 +70,10 @@
 				FC1FE5FC25FDB07000FD9C3D /* DetailViewController.swift */,
 				FC1FE5F525FB015500FD9C3D /* Joke.swift */,
 				FC1FE5F925FC703F00FD9C3D /* JokesResult.swift */,
-				FC1FE5F225FB005100FD9C3D /* TableViewController.swift */,
 				FC1FE5E325FB000000FD9C3D /* Main.storyboard */,
 				FC1FE5E625FB000300FD9C3D /* Assets.xcassets */,
 				FC1FE5E825FB000300FD9C3D /* LaunchScreen.storyboard */,
+				FC1FE5F225FB005100FD9C3D /* TableViewController.swift */,
 				FC1FE5EB25FB000300FD9C3D /* Info.plist */,
 			);
 			path = JokeDispenser;

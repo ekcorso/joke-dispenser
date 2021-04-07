@@ -41,6 +41,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="cfC-PP-eg1"/>
+                    <connections>
+                        <segue destination="1nz-uV-EMK" kind="show" identifier="jokeDetailSegue" id="jfD-fl-8Bt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjh-gw-0nH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -65,6 +68,7 @@
                         <viewLayoutGuide key="safeArea" id="zyg-Kt-XSq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="hBd-b7-cRi"/>
                     <connections>
                         <outlet property="jokeLabel" destination="WZn-VT-K3f" id="sA5-dl-lWe"/>
                     </connections>
