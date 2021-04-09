@@ -72,14 +72,5 @@ class ViewController: UITableViewController {
         vc.joke = jokes[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let navigationController = segue.destination as? UINavigationController {
-            if let detailViewController = navigationController.viewControllers.first as? DetailViewController {
-                //detailViewController.delegate = self
-            }
-        }
-    }
-
 }
 

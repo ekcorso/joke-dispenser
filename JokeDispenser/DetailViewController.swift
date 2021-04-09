@@ -9,16 +9,37 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    //deleting "weak" below kind of solves the "instance will be immediately deallocated" warning
-    @IBOutlet var jokeLabel: UILabel!
+    var jokeLabel: UILabel!
     var joke: Joke?
     
     override func loadView() {
-        //view = UIView() <--Do I need this?
+        view = UIView()
+        view.backgroundColor = .white
+        
         jokeLabel = UILabel()
+    
+        jokeLabel.translatesAutoresizingMaskIntoConstraints = false
+        jokeLabel.font = UIFont.systemFont(ofSize: 15)
+        jokeLabel.text = "Joke goes here"
+        jokeLabel.numberOfLines = 0
+        jokeLabel.lineBreakMode = .byWordWrapping
+        jokeLabel.textAlignment = .left
+        jokeLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
+        view.addSubview(jokeLabel)
+        
+        NSLayoutConstraint.activate([
+            
+            jokeLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            jokeLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 8),
+            jokeLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 8)
+        
+        
+        ])
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         
         if let joke = joke, let jokeLabel = jokeLabel {
             jokeLabel.text = joke.joke
