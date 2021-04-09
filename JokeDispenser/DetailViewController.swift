@@ -10,6 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var jokeLabel: UILabel!
+    var emojiLabel: UILabel!
     var joke: Joke?
     
     override func loadView() {
@@ -42,7 +43,7 @@ class DetailViewController: UIViewController {
 
         
         if let joke = joke, let jokeLabel = jokeLabel {
-            jokeLabel.text = joke.joke
+            jokeLabel.text = joke.delivery
         }
     }
 

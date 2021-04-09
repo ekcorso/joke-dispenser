@@ -10,11 +10,17 @@ import UIKit
 class ViewController: UITableViewController {
     
     var jokes = [Joke]()
+    
+    override func loadView() {
+        super.loadView()
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlString = "https://v2.jokeapi.dev/joke/Any?safe-mode&type=single&amount=10"
+        //This version returns two-part jokes only
+        let urlString = "https://v2.jokeapi.dev/joke/Any?safe-mode&type=twopart&amount=10"
         
         if let url = URL(string: urlString), let data = try? Data(contentsOf: url) {
             parse(json: data)
@@ -62,7 +68,7 @@ class ViewController: UITableViewController {
         
         let joke = jokes[indexPath.row]
         
-        cell.textLabel?.text = joke.joke
+        cell.textLabel?.text = joke.setup
 
         return cell
     }

@@ -9,13 +9,14 @@ import Foundation
 
 
 struct Joke: Codable {
+    //Variables for the twoPart joke type
     var category: String
-    var joke: String
+    var type: String
+    var setup: String
+    var delivery: String
     
-    // Variables for the twoPart joke type
-//    var type: String
-//    var setup: String
-//    var delivery: String
+    //If using "single" type jokes
+    //var joke: String
 }
 
 
