@@ -44,17 +44,18 @@ class DetailViewController: UIViewController {
         reactionView.addSubview(jokeLabel)
         
         NSLayoutConstraint.activate([
+    
+            reactionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0),
+            reactionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            reactionView.widthAnchor.constraint(equalToConstant: 100),
+            reactionView.heightAnchor.constraint(equalToConstant: 100),
             
-//            jokeLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-//            jokeLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 8),
-//            jokeLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 8)
+            emojiLabel.topAnchor.constraint(equalTo: reactionView.topAnchor, constant: 8),
+            emojiLabel.centerXAnchor.constraint(equalTo: reactionView.centerXAnchor, constant: 0),
             
-            reactionView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
-            reactionView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 8),
-            reactionView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 8)
-            
+            jokeLabel.topAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: 8),
+            jokeLabel.centerXAnchor.constraint(equalTo: emojiLabel.centerXAnchor, constant: 0), 
         ])
-        
     }
     
     override func viewDidLoad() {
@@ -65,9 +66,4 @@ class DetailViewController: UIViewController {
             jokeLabel.text = joke.delivery
         }
     }
-
-    //jokeLabel is nil when viewDidLoad gets to it. This could be because it's not being accessed correctly from the main viewController-- didSelectRowAt could be failing to correctly initialize the detail view controller in the hierarchy. Or it could be that I'm trying to update it at the wrong point in this view controller's lifecycle.
-    //https://developer.apple.com/forums/thread/129341
 }
-
-//try the segue if that doesn't work try intializing it (using it's built-in initializer) in ViewDidLoad
