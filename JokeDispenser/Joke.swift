@@ -7,11 +7,11 @@
 
 import Foundation
 
-
 struct Joke: Codable {
-    //Variables for the twoPart joke type
     var category: String
     var type: String
+    
+    //Variables for the twoPart joke type
     var setup: String
     var delivery: String
     
@@ -19,5 +19,6 @@ struct Joke: Codable {
     //var joke: String
 }
 
-
+// try doing this with structs using protocols (var category/ type). Then two structs that conform to joke.
+// Create a base url and give two different paths/ endpoints. This means they may each need a different result object
 

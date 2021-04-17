@@ -54,7 +54,7 @@ class DetailViewController: UIViewController {
             emojiLabel.centerXAnchor.constraint(equalTo: reactionView.centerXAnchor, constant: 0),
             
             jokeLabel.topAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: 8),
-            jokeLabel.centerXAnchor.constraint(equalTo: emojiLabel.centerXAnchor, constant: 0), 
+            jokeLabel.centerXAnchor.constraint(equalTo: emojiLabel.centerXAnchor, constant: 0),
         ])
     }
     

@@ -14,6 +14,8 @@ class ViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action , target: self, action: #selector(toggleJokeType))
+        
     }
 
     override func viewDidLoad() {
@@ -37,28 +39,11 @@ class ViewController: UITableViewController {
         }
     }
     
-//    @objc func filter() {
-//        let ac = UIAlertController(title: "Filter", message: "Enter a word to filter jokes", preferredStyle: .alert)
-//        ac.addTextField()
-//
-//        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
-//            let answer = ac.textFields?[0].text
-//            
-//            for petition in self.petitions {
-//                if let answer = answer {
-//                    if petition.body.contains(answer) || petition.title.contains(answer) {
-//                        self.filteredPetitions.append(petition)
-//                        self.petitions = self.filteredPetitions
-//                    }
-//                }
-//            }
-//            self.tableView.reloadData()
-//        }
-//
-//        ac.addAction(submitAction)
-//        present(ac, animated: true)
-//    }
-    
+    @objc func toggleJokeType() {
+        //toggle between two URLstrings, joke variables, and jokeLabel.text (which var this is set to)
+        //Maybe also truncate text in cellLabel.text in cellForRowAt for single-part jokes (to make it make more sense that they need to be tapped to see more)
+    }
+     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jokes.count
     }
