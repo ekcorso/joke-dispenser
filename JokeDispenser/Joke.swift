@@ -7,16 +7,24 @@
 
 import Foundation
 
-struct Joke: Codable {
+protocol Joke: Codable {
+    var category: String { get set }
+    var type: String { get set }
+}
+
+struct TwoPartJoke: Joke {
     var category: String
     var type: String
     
-    //Variables for the twoPart joke type
     var setup: String
     var delivery: String
+}
+
+struct SinglePartJoke: Joke {
+    var category: String
+    var type: String
     
-    //If using "single" type jokes
-    //var joke: String
+    var joke: String
 }
 
 // try doing this with structs using protocols (var category/ type). Then two structs that conform to joke.

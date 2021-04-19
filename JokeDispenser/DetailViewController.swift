@@ -62,8 +62,10 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         
-        if let joke = joke, let jokeLabel = jokeLabel {
+        if let joke = joke as? TwoPartJoke, let jokeLabel = jokeLabel {
             jokeLabel.text = joke.delivery
+        } else if let joke = joke as? SinglePartJoke, let jokeLabel = jokeLabel {
+            jokeLabel.text = joke.joke
         }
     }
 }

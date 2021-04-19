@@ -7,7 +7,17 @@
 
 import Foundation
 
-struct JokesResult: Codable {
-    //this is the api result struct
-    var jokes = [Joke]()
+protocol JokesResult {
 }
+
+struct SinglePartJokesResult: Codable, JokesResult {
+    var jokes = [SinglePartJoke]()
+}
+
+struct TwoPartJokeResult: Codable, JokesResult {
+    var jokes = [TwoPartJoke]()
+}
+
+//Can consolidate this file with Joke.swift
+
+//Made this into two separate structs instead of one because for some reason "var jokes = [Joke]()" didn't conform to Codable (has something to do with Joke being a protocol)

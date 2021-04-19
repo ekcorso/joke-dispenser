@@ -10,20 +10,27 @@ import UIKit
 class ViewController: UITableViewController {
     
     var jokes = [Joke]()
+    var joke: Joke?
+    var jokeType: String = "twopart"
     
     override func loadView() {
         super.loadView()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action , target: self, action: #selector(toggleJokeType))
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Toggle", style: .plain, target: self, action: #selector(toggleJokeType))
+            
+            //UIBarButtonItem(barButtonSystemItem: .action , target: self, action: #selector(toggleJokeType))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        var urlString: String
+        let urlBaseString = "https://v2.jokeapi.dev/joke/Any?safe-mode"
+        let twoPartJokeUrlString = urlBaseString + "&type=twopart&amount=10"
+        let singlePartJokeUrlString = urlBaseString + "&type=single&amount=10"
         
-        //This version returns two-part jokes only
-        let urlString = "https://v2.jokeapi.dev/joke/Any?safe-mode&type=twopart&amount=10"
-        
+        joke?.type == "single" ? (urlString = singlePartJokeUrlString) : (urlString = twoPartJokeUrlString)
+    
         if let url = URL(string: urlString), let data = try? Data(contentsOf: url) {
             parse(json: data)
             return
@@ -32,16 +39,32 @@ class ViewController: UITableViewController {
     
     func parse(json: Data) {
         let decoder = JSONDecoder()
-        
-        if let jsonJokes = try? decoder.decode(JokesResult.self, from: json) {
-            jokes = jsonJokes.jokes
-            tableView.reloadData()
+    
+        if jokeType == "twopart" {
+            if let jsonJokes = try? decoder.decode(TwoPartJokeResult.self, from: json) {
+                jokes = jsonJokes.jokes
+                tableView.reloadData()
+            }
+        } else {
+            if let jsonJokes = try? decoder.decode(SinglePartJokesResult.self, from: json) {
+                jokes = jsonJokes.jokes
+                tableView.reloadData()
+            }
         }
+        //rename json to jsonData for clarity
     }
     
     @objc func toggleJokeType() {
         //toggle between two URLstrings, joke variables, and jokeLabel.text (which var this is set to)
         //Maybe also truncate text in cellLabel.text in cellForRowAt for single-part jokes (to make it make more sense that they need to be tapped to see more)
+        
+        if joke?.type == "twopart" {
+            joke?.type = "single"
+        } else {
+            joke?.type = "twopart"
+        }
+        
+        tableView.reloadData()
     }
      
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,8 +76,14 @@ class ViewController: UITableViewController {
         
         let joke = jokes[indexPath.row]
         
-        cell.textLabel?.text = joke.setup
-
+        if let joke = joke as? TwoPartJoke {
+            cell.textLabel?.text = joke.setup
+        } else if let joke = joke as? SinglePartJoke {
+            cell.textLabel?.text = joke.joke
+        }
+        
+        //Joke is a generic protocol-- when "joke" actaully gets created it isn't a Joke, it's a SinglePartJoke or a TwoPartJoke, but Xcode doesn't know which it will be at this point, so it can't autofill variables
+        
         return cell
     }
     
@@ -65,3 +94,4 @@ class ViewController: UITableViewController {
     }
 }
 
+// Write two funcs: fetchOnePartJokes and fetchTwoPartJokes. Each is responsible for making the api request, getting and decoding the result data to provide the array of relevant joke objects. Make a class called something like jokeApi.swift to own those funcs. this vc would have a reference to the jokeApi class. Requires closure or delegate to handle the data.
