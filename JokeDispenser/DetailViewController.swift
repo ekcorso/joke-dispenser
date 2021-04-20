@@ -27,7 +27,6 @@ class DetailViewController: UIViewController {
         jokeLabel.lineBreakMode = .byWordWrapping
         jokeLabel.textAlignment = .left
         jokeLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
-        //view.addSubview(jokeLabel)
         
         emojiLabel = UILabel()
         emojiLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -11,14 +11,12 @@ class ViewController: UITableViewController {
     
     var jokes = [Joke]()
     var joke: Joke?
-    var jokeType: String = "twopart"
     
     override func loadView() {
         super.loadView()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Toggle", style: .plain, target: self, action: #selector(toggleJokeType))
-            
-            //UIBarButtonItem(barButtonSystemItem: .action , target: self, action: #selector(toggleJokeType))
+        
     }
 
     override func viewDidLoad() {
@@ -30,39 +28,54 @@ class ViewController: UITableViewController {
         let singlePartJokeUrlString = urlBaseString + "&type=single&amount=10"
         
         joke?.type == "single" ? (urlString = singlePartJokeUrlString) : (urlString = twoPartJokeUrlString)
-    
+        //This always fails because at this point jokes hasn't been populated yet and joke has not been intialized
+        
         if let url = URL(string: urlString), let data = try? Data(contentsOf: url) {
-            parse(json: data)
+            parse(jsonData: data)
             return
         }
     }
     
-    func parse(json: Data) {
+    func parse(jsonData: Data) {
         let decoder = JSONDecoder()
     
-        if jokeType == "twopart" {
-            if let jsonJokes = try? decoder.decode(TwoPartJokeResult.self, from: json) {
-                jokes = jsonJokes.jokes
-                tableView.reloadData()
-            }
+//        if jokeType == "twopart" {
+//            if let jsonJokes = try? decoder.decode(TwoPartJokeResult.self, from: json) {
+//                jokes = jsonJokes.jokes
+//                tableView.reloadData()
+//            }
+//        } else {
+//            if let jsonJokes = try? decoder.decode(SinglePartJokesResult.self, from: json) {
+//                jokes = jsonJokes.jokes
+//                tableView.reloadData()
+//            }
+//        }
+        
+
+        if let jsonJokes = try? decoder.decode(TwoPartJokeResult.self, from: jsonData) {
+            jokes = jsonJokes.jokes
+            tableView.reloadData()
         } else {
-            if let jsonJokes = try? decoder.decode(SinglePartJokesResult.self, from: json) {
+            if let jsonJokes = try? decoder.decode(SinglePartJokesResult.self, from: jsonData) {
                 jokes = jsonJokes.jokes
                 tableView.reloadData()
             }
         }
-        //rename json to jsonData for clarity
     }
     
     @objc func toggleJokeType() {
         //toggle between two URLstrings, joke variables, and jokeLabel.text (which var this is set to)
         //Maybe also truncate text in cellLabel.text in cellForRowAt for single-part jokes (to make it make more sense that they need to be tapped to see more)
         
-        if joke?.type == "twopart" {
-            joke?.type = "single"
-        } else {
-            joke?.type = "twopart"
-        }
+//        if joke?.type == "twopart" {
+//            joke?.type = "single"
+//        } else {
+//            joke?.type = "twopart"
+//        }
+        
+        jokes[0].type = "single"
+        //This changes the joke type (see po jokes[0], but it's after the fact. It doesn't change which data was brought in, only the data it already has (which is meaningless). Perhaps toggle should re-fetch/ parse the json instead
+        print("joke type is now \(joke?.type)")
         
         tableView.reloadData()
     }
@@ -82,8 +95,6 @@ class ViewController: UITableViewController {
             cell.textLabel?.text = joke.joke
         }
         
-        //Joke is a generic protocol-- when "joke" actaully gets created it isn't a Joke, it's a SinglePartJoke or a TwoPartJoke, but Xcode doesn't know which it will be at this point, so it can't autofill variables
-        
         return cell
     }
     
@@ -94,4 +105,4 @@ class ViewController: UITableViewController {
     }
 }
 
-// Write two funcs: fetchOnePartJokes and fetchTwoPartJokes. Each is responsible for making the api request, getting and decoding the result data to provide the array of relevant joke objects. Make a class called something like jokeApi.swift to own those funcs. this vc would have a reference to the jokeApi class. Requires closure or delegate to handle the data.
+// Write two funcs: fetchSinglePartJokes and fetchTwoPartJokes. Each is responsible for making the api request, getting and decoding the result data to provide the array of relevant joke objects. Make a class called something like jokeApi.swift to own those funcs. this vc would have a reference to the jokeApi class. Requires closure or delegate to handle the data.
