@@ -21,19 +21,11 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var urlString: String
-        let urlBaseString = "https://v2.jokeapi.dev/joke/Any?safe-mode"
-        let twoPartJokeUrlString = urlBaseString + "&type=twopart&amount=10"
-        let singlePartJokeUrlString = urlBaseString + "&type=single&amount=10"
         
-        joke?.type == "single" ? (urlString = singlePartJokeUrlString) : (urlString = twoPartJokeUrlString)
-        //This always fails because at this point jokes hasn't been populated yet and joke has not been intialized
+        let jokeAPI = JokeAPI()
+        jokeAPI.delegate = self
         
-        if let url = URL(string: urlString), let data = try? Data(contentsOf: url) {
-            parse(jsonData: data)
-            return
-        }
+        jokeAPI.fetchTwoPartJokes()
     }
     
     func parse(jsonData: Data) {
@@ -105,4 +97,16 @@ class ViewController: UITableViewController {
     }
 }
 
-// Write two funcs: fetchSinglePartJokes and fetchTwoPartJokes. Each is responsible for making the api request, getting and decoding the result data to provide the array of relevant joke objects. Make a class called something like jokeApi.swift to own those funcs. this vc would have a reference to the jokeApi class. Requires closure or delegate to handle the data.
+extension ViewController: JokeAPIDelegate {
+    func apiDidFetchTwoPartJokes(jokes: [Joke]) {
+        self.jokes = jokes
+        tableView.reloadData()
+    }
+    
+    func apiDidFetchSinglePartJokes(jokes: [Joke]) {
+        self.jokes = jokes
+        tableView.reloadData()
+    }
+    
+    
+}
