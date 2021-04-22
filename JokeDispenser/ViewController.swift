@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     var jokes = [Joke]()
-    var joke: Joke?
+    let jokeAPI = JokeAPI()
     
     override func loadView() {
         super.loadView()
@@ -22,53 +22,16 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let jokeAPI = JokeAPI()
         jokeAPI.delegate = self
-        
         jokeAPI.fetchTwoPartJokes()
     }
-    
-    func parse(jsonData: Data) {
-        let decoder = JSONDecoder()
-    
-//        if jokeType == "twopart" {
-//            if let jsonJokes = try? decoder.decode(TwoPartJokeResult.self, from: json) {
-//                jokes = jsonJokes.jokes
-//                tableView.reloadData()
-//            }
-//        } else {
-//            if let jsonJokes = try? decoder.decode(SinglePartJokesResult.self, from: json) {
-//                jokes = jsonJokes.jokes
-//                tableView.reloadData()
-//            }
-//        }
         
-
-        if let jsonJokes = try? decoder.decode(TwoPartJokeResult.self, from: jsonData) {
-            jokes = jsonJokes.jokes
-            tableView.reloadData()
-        } else {
-            if let jsonJokes = try? decoder.decode(SinglePartJokesResult.self, from: jsonData) {
-                jokes = jsonJokes.jokes
-                tableView.reloadData()
-            }
-        }
-    }
-    
     @objc func toggleJokeType() {
-        //toggle between two URLstrings, joke variables, and jokeLabel.text (which var this is set to)
-        //Maybe also truncate text in cellLabel.text in cellForRowAt for single-part jokes (to make it make more sense that they need to be tapped to see more)
-        
-//        if joke?.type == "twopart" {
-//            joke?.type = "single"
-//        } else {
-//            joke?.type = "twopart"
-//        }
-        
-        jokes[0].type = "single"
-        //This changes the joke type (see po jokes[0], but it's after the fact. It doesn't change which data was brought in, only the data it already has (which is meaningless). Perhaps toggle should re-fetch/ parse the json instead
-        print("joke type is now \(joke?.type)")
-        
+        if jokes.first?.type == "twopart" {
+            jokeAPI.fetchSinglePartJokes()
+        } else {
+            jokeAPI.fetchTwoPartJokes()
+        }
         tableView.reloadData()
     }
      
@@ -107,6 +70,4 @@ extension ViewController: JokeAPIDelegate {
         self.jokes = jokes
         tableView.reloadData()
     }
-    
-    
 }

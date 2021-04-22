@@ -26,7 +26,3 @@ struct SinglePartJoke: Joke {
     
     var joke: String
 }
-
-// try doing this with structs using protocols (var category/ type). Then two structs that conform to joke.
-// Create a base url and give two different paths/ endpoints. This means they may each need a different result object
-
