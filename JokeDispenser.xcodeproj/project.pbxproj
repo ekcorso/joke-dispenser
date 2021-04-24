@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC005E8026323A5E00912C30 /* TypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC005E7F26323A5E00912C30 /* TypeSelectionViewController.swift */; };
 		FC1FE5DE25FB000000FD9C3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1FE5DD25FB000000FD9C3D /* AppDelegate.swift */; };
 		FC1FE5E025FB000000FD9C3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1FE5DF25FB000000FD9C3D /* SceneDelegate.swift */; };
 		FC1FE5E225FB000000FD9C3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1FE5E125FB000000FD9C3D /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC005E7F26323A5E00912C30 /* TypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionViewController.swift; sourceTree = "<group>"; };
 		FC1FE5DA25FB000000FD9C3D /* JokeDispenser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JokeDispenser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1FE5DD25FB000000FD9C3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC1FE5DF25FB000000FD9C3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				FC6D8991262E678B00C6D699 /* JokeAPI.swift */,
 				FC1FE5FC25FDB07000FD9C3D /* DetailViewController.swift */,
 				FC1FE5F525FB015500FD9C3D /* Joke.swift */,
+				FC005E7F26323A5E00912C30 /* TypeSelectionViewController.swift */,
 				FC1FE5F925FC703F00FD9C3D /* JokesResult.swift */,
 				FC1FE5E325FB000000FD9C3D /* Main.storyboard */,
 				FC1FE5E625FB000300FD9C3D /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1FE5E225FB000000FD9C3D /* ViewController.swift in Sources */,
+				FC005E8026323A5E00912C30 /* TypeSelectionViewController.swift in Sources */,
 				FC1FE5F625FB015500FD9C3D /* Joke.swift in Sources */,
 				FC1FE5DE25FB000000FD9C3D /* AppDelegate.swift in Sources */,
 				FC6D8992262E678B00C6D699 /* JokeAPI.swift in Sources */,
