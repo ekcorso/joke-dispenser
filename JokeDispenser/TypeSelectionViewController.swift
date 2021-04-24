@@ -9,6 +9,8 @@ import UIKit
 
 class TypeSelectionViewController: UIViewController {
     
+    let singleJokeButton = UIButton()
+    let twoPartJokeButton = UIButton()
     
     override func loadView() {
         super.loadView()
@@ -17,6 +19,24 @@ class TypeSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //stuff
+        
+        view.backgroundColor = .black
+        
+        //Set up button for single-part jokes
+        singleJokeButton.setTitle("See one-liners", for: .normal)
+        view.addSubview(singleJokeButton)
+        singleJokeButton.backgroundColor = .blue
+        singleJokeButton.setTitleColor(.white, for: .normal)
+        singleJokeButton.frame = CGRect(x: 100, y: 100, width: 200, height: 52)
+        singleJokeButton.addTarget(self, action: #selector(didTapSinglePartJokeButton), for: .touchUpInside)
+        
+        //Set up button for two-part jokes
+        twoPartJokeButton.setTitle("See two-part jokes", for: .normal)
+    
+        
+    }
+    
+    @objc func didTapSinglePartJokeButton() {
+
     }
 }
