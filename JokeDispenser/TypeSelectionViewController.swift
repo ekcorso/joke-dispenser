@@ -11,10 +11,12 @@ class TypeSelectionViewController: UIViewController {
     
     
     override func loadView() {
-        <#code#>
+        super.loadView()
+        //Stuff
     }
     
     override func viewDidLoad() {
-        <#code#>
+        super.viewDidLoad()
+        //stuff
     }
 }
