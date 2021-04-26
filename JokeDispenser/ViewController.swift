@@ -16,7 +16,6 @@ class ViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         
-        //This line isn't being hit. How do I get the barButtonItem to show up onthe nav bar that is initialized in SceneDelegate
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Toggle", style: .plain, target: self, action: #selector(toggleJokeType))
     }
 
@@ -26,16 +25,16 @@ class ViewController: UITableViewController {
         view.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
-        establishSubviews()
+        //establishSubviews()
         setUpTableView()
-        setConstraints()
+        //setConstraints()
         
         jokeAPI.delegate = self
         jokeAPI.fetchTwoPartJokes()
     }
         
     func setUpTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        //tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     

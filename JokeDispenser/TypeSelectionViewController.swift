@@ -33,10 +33,22 @@ class TypeSelectionViewController: UIViewController {
         //Set up button for two-part jokes
         twoPartJokeButton.setTitle("See two-part jokes", for: .normal)
     
-        
     }
     
     @objc func didTapSinglePartJokeButton() {
 
+    }
+}
+extension TypeSelectionViewController {
+    func establishSubviews() {
+    }
+    
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+//            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+//            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+//            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+//            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }

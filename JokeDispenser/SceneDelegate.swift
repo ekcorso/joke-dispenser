@@ -20,6 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
         
+        //let viewController = ViewController()
+        //let detailViewController = DetailViewController()
         let typeSelectionViewController = TypeSelectionViewController()
         let navigationController = UINavigationController(rootViewController: typeSelectionViewController)
         window?.rootViewController = navigationController
