@@ -48,7 +48,7 @@ class TypeSelectionViewController: UIViewController {
     @objc func didTapSingleJokeButton() {
         //Takes user to the main VC and sets the query type to single part jokes
         let viewController = ViewController()
-        viewController.jokeAPI.fetchSinglePartJokes()
+        viewController.jokeType = "single"
         navigationController?.pushViewController(viewController, animated: true)
         
     }
@@ -56,7 +56,7 @@ class TypeSelectionViewController: UIViewController {
     @objc func didTapTwoPartJokeButton() {
         //Takes user to the main VC and sets the query type to two part jokes
         let viewController = ViewController()
-        viewController.jokeAPI.fetchTwoPartJokes()
+        viewController.jokeType = "twopart"
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

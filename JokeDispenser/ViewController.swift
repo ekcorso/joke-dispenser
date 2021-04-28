@@ -12,6 +12,7 @@ class ViewController: UITableViewController {
     //let tableView = UITableView()
     var jokes = [Joke]()
     let jokeAPI = JokeAPI()
+    var jokeType: String?
     
     override func loadView() {
         super.loadView()
@@ -30,7 +31,11 @@ class ViewController: UITableViewController {
         //setConstraints()
         
         jokeAPI.delegate = self
-        jokeAPI.fetchTwoPartJokes()
+        if jokeType == "twopart" {
+            jokeAPI.fetchTwoPartJokes()
+        } else if jokeType == "single" {
+            jokeAPI.fetchSinglePartJokes()
+        }
     }
         
     func setUpTableView() {
