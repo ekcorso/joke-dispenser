@@ -24,9 +24,7 @@ class DetailViewController: UIViewController {
         jokeLabel.font = UIFont.systemFont(ofSize: 15)
         jokeLabel.text = "Joke goes here"
         jokeLabel.numberOfLines = 0
-        jokeLabel.lineBreakMode = .byWordWrapping
-        jokeLabel.textAlignment = .left
-        jokeLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
+        jokeLabel.textAlignment = .center
         
         emojiLabel = UILabel()
         emojiLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +51,7 @@ class DetailViewController: UIViewController {
             emojiLabel.centerXAnchor.constraint(equalTo: reactionView.centerXAnchor, constant: 0),
             
             jokeLabel.topAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: 8),
+            jokeLabel.widthAnchor.constraint(equalToConstant: 300),
             jokeLabel.centerXAnchor.constraint(equalTo: emojiLabel.centerXAnchor, constant: 0),
         ])
     }

@@ -67,6 +67,8 @@ class ViewController: UITableViewController {
             cell.textLabel?.text = joke.joke
         }
         
+        cell.textLabel?.numberOfLines = 0
+        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell
     }
     
