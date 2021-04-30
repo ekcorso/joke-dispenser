@@ -30,6 +30,7 @@ class TypeSelectionViewController: UIViewController {
         singleJokeButton.translatesAutoresizingMaskIntoConstraints = false
         singleJokeButton.backgroundColor = .blue
         singleJokeButton.setTitleColor(.white, for: .normal)
+        singleJokeButton.layer.cornerRadius = 10
         //singleJokeButton.frame = CGRect(x: 100, y: 100, width: 200, height: 52)
         singleJokeButton.addTarget(self, action: #selector(didTapSingleJokeButton), for: .touchUpInside)
         
@@ -39,6 +40,7 @@ class TypeSelectionViewController: UIViewController {
         twoPartJokeButton.translatesAutoresizingMaskIntoConstraints = false
         twoPartJokeButton.backgroundColor = .red
         twoPartJokeButton.setTitleColor(.white, for: .normal)
+        twoPartJokeButton.layer.cornerRadius = 10
         //twoPartJokeButton.frame = CGRect(x: 100, y: 100, width: 200, height: 52)
         twoPartJokeButton.addTarget(self, action: #selector(didTapTwoPartJokeButton), for: .touchUpInside)
         
@@ -66,13 +68,15 @@ extension TypeSelectionViewController {
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            singleJokeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200),
-            singleJokeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
+            singleJokeButton.topAnchor.constraint(equalTo: self.view.topAnchor),
+            singleJokeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             //singleJokeButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            singleJokeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 10),
-            twoPartJokeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 400),
+            singleJokeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            singleJokeButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/5, constant: -30),
+            twoPartJokeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300),
             twoPartJokeButton.leadingAnchor.constraint(equalTo: singleJokeButton.leadingAnchor),
-            twoPartJokeButton.trailingAnchor.constraint(equalTo: singleJokeButton.trailingAnchor)
+            twoPartJokeButton.trailingAnchor.constraint(equalTo: singleJokeButton.trailingAnchor),
+            twoPartJokeButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/5, constant: -30)
         ])
     }
 }
