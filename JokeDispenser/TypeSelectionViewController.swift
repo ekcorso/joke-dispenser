@@ -79,15 +79,15 @@ extension TypeSelectionViewController {
             buttonView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0),
             buttonView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             buttonView.widthAnchor.constraint(equalToConstant: 100),
-            buttonView.heightAnchor.constraint(equalToConstant: 100),
+            buttonView.heightAnchor.constraint(equalToConstant: 200),
             
             singleJokeButton.topAnchor.constraint(equalTo: buttonView.topAnchor),
             //singleJokeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             //singleJokeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             singleJokeButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor),
             singleJokeButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor),
-            singleJokeButton.heightAnchor.constraint(equalToConstant: 100),
             singleJokeButton.widthAnchor.constraint(equalToConstant: 200),
+            singleJokeButton.heightAnchor.constraint(equalToConstant: 50),
             
             twoPartJokeButton.topAnchor.constraint(equalTo: singleJokeButton.bottomAnchor, constant: 30),
             twoPartJokeButton.leadingAnchor.constraint(equalTo: singleJokeButton.leadingAnchor),
@@ -96,3 +96,5 @@ extension TypeSelectionViewController {
         ])
     }
 }
+
+//Set buttonview to fit AROUND the two buttons (with spacing) and create the buttons with frames. Then center buttonview in the main view
